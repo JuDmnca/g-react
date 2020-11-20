@@ -11,14 +11,15 @@ import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
   const { spheres } = useSelector(state => state)
+  const spheresArray = { spheres }.spheres
   const dispatch = useDispatch()
   const numEasterEgg = 17
 
   useEffect(() => {
-    if ({spheres}.spheres.length === numEasterEgg + 1 && {spheres}.spheres[numEasterEgg].easterEgg === false) {
+    if (spheresArray.length === numEasterEgg + 1 && spheresArray[numEasterEgg].easterEgg === false) {
       dispatch({type :'EASTER_EGG'})
     }
-  }, [{spheres}.spheres, dispatch])
+  }, [spheresArray, dispatch])
 
   return (
     <div className="App">
@@ -36,7 +37,7 @@ function App() {
       <Canvas style={{width: '100vw', height: '100vh'}}>
         <ambientLight />
         <pointLight position={[10,10,10]} />
-        {{spheres}.spheres.map((sphere,i) => {return (
+        {spheresArray.map((sphere,i) => {return (
             <group key={i}>
               <Sphere
                 number={sphere.number}
